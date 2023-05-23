@@ -11,7 +11,22 @@
 class StreamReassembler {
   private:
     // Your code here -- add private members as necessary.
+    //---------------------------------------------------
+    struct block_node {
+        size_t begin = 0;
+        size_t length = 0;
+        std::string data = "";
+        bool operator<(block_node) const {return begin < t.begin()}
+    }
+    std::set<block_node> _blocks = {};
+    std::vector<char> _buffer = {};
+    size_t _unassembled_byte = 0;
+    size_t _head_index = 0;
+    bool _eof_flag = false;
 
+
+    long merg_block(block_node& elm1, const block_node& elm2);
+    //---------------------------------------------------
     ByteStream _output;  //!< The reassembled in-order byte stream
     size_t _capacity;    //!< The maximum number of bytes
 
