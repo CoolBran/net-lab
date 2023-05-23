@@ -5,7 +5,8 @@
 
 #include <cstdint>
 #include <string>
-
+#include <vector>
+#include <set>
 //! \brief A class that assembles a series of excerpts from a byte stream (possibly out of order,
 //! possibly overlapping) into an in-order byte stream.
 class StreamReassembler {
@@ -16,8 +17,8 @@ class StreamReassembler {
         size_t begin = 0;
         size_t length = 0;
         std::string data = "";
-        bool operator<(block_node) const {return begin < t.begin()}
-    }
+        bool operator<(block_node t) const {return begin < t.begin;};
+    };
     std::set<block_node> _blocks = {};
     std::vector<char> _buffer = {};
     size_t _unassembled_byte = 0;
